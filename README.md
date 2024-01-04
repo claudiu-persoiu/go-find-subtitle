@@ -1,1 +1,1 @@
-# go-subtitle-finder
+# go-find-subtitle

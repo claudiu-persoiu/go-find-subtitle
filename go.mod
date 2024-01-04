@@ -1,3 +1,3 @@
-module github.com/claudiu-persoiu/go-subtitle-finder
+module github.com/claudiu-persoiu/go-find-subtitle
 
 go 1.20
