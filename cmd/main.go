@@ -11,7 +11,7 @@ func main() {
 
 	var path string
 
-	if len(os.Args) > 0 {
+	if len(os.Args) > 1 {
 		path = os.Args[1]
 	}
 
@@ -25,7 +25,7 @@ func main() {
 
 	config, err := core.GetConfig()
 	if err != nil {
-		panic(err)
+		log.Fatalln(err)
 	}
 
 	processor := core.NewProcessor()

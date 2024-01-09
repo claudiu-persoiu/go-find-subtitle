@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"github.com/claudiu-persoiu/go-find-subtitle/src/provider/opensubtitles/hash"
 	"io"
+	"log"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -31,7 +32,7 @@ const timeout = 10
 
 func NewFinder(credentials Config, client *Client) *Finder {
 	if credentials.Key == "" {
-		panic("No Opensutitles credentials provided, please see documentation at: https://github.com/claudiu-persoiu/go-find-subtitle")
+		log.Fatalln("No Opensutitles credentials provided, please see documentation at: https://github.com/claudiu-persoiu/go-find-subtitle")
 	}
 
 	f := &Finder{
@@ -90,7 +91,7 @@ func (f *Finder) login() error {
 	response := &loginResponse{}
 	err = json.NewDecoder(bytes.NewReader(resp)).Decode(response)
 	if err != nil {
-		panic(err)
+		return fmt.Errorf("could not parse response: %s", err)
 	}
 
 	if response.Token == "" {
@@ -134,7 +135,7 @@ func (f *Finder) search(path string) (fileId string, err error) {
 	response := &searchResponse{}
 	err = json.NewDecoder(bytes.NewReader(resp)).Decode(response)
 	if err != nil {
-		panic(err)
+		return "", fmt.Errorf("could not parse response: %s", err)
 	}
 
 	if response != nil && len(response.Data) > 0 && len(response.Data[0].Attributes.Files) > 0 {
@@ -159,7 +160,7 @@ func (f *Finder) download(fileId string) (url string, err error) {
 	response := &downloadResponse{}
 	err = json.NewDecoder(bytes.NewReader(resp)).Decode(response)
 	if err != nil {
-		panic(err)
+		return url, fmt.Errorf("could not parse response: %s", err)
 	}
 
 	return response.Link, nil
