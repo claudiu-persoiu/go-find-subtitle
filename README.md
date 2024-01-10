@@ -61,3 +61,7 @@ $ sudo service transmission-daemon start
 ```
 
 NOTE: In case you need to debug Transmission installation the output is redirected to default syslog file.
+
+### Known issues
+
+If more files finish in the same time some of them may not be able to get translations because of multiple login tokens in the same time.
