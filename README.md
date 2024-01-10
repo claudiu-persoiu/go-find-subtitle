@@ -24,6 +24,8 @@ The finder can work in two modes, as a command line or integrated with [Transmis
         }
    }
 ```
+8. Download the appropriate fine from releases page https://github.com/claudiu-persoiu/go-find-subtitle/releases
+9. Move the file to ```/usr/bin```
 
 ## Running
 
