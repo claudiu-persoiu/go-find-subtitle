@@ -1,5 +1,3 @@
-# go-find-subtitle
-
 # Go Find Subtitle
 Movie subtitle finder
 
